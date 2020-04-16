@@ -40,9 +40,4 @@ public function userIsLogged($theUserType)
 }
 
 
-
-
-
-
-
 ?>

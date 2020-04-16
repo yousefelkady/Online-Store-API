@@ -10,7 +10,7 @@ $username = isset($_POST['username']) ? $_POST['username'] : die();
 $password = isset($_POST['password']) ? $_POST['password'] : die();
 $controller= null; 
  
- 
+ //check user type
 if ($userType == "client"){
     $controller= new clientController($username , $password);
     $userTypeObject = new userList();
