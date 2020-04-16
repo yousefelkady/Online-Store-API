@@ -13,12 +13,19 @@ $controller= null;
  
 if ($userType == "client"){
     $controller= new clientController($username , $password);
+    $userTypeObject = new userList();
+    $userTypeObject->userIsLogged($userType);
+
 }
 else if ($userType == "owner"){
     $controller= new ownerController($username , $password);
+    $userTypeObject = new userList();
+    $userTypeObject->userIsLogged($userType);
 }
 else if ($userType == "admin"){
     $controller= new adminController($username , $password);
+    $userTypeObject = new userList();
+    $userTypeObject->userIsLogged($userType);
 }
 
 
@@ -34,7 +41,12 @@ if($stmt->rowCount() > 0){
         "message" => "Successfully Login!",
         "id" => $row['id'],
         "username" => $row['username'],
+        
     );
+    // Authentication that the user is logged in 
+    $isLoggedIn = true;
+    $listObject = new userList();
+    listObject(isLoggedIn);
 }
 else{
     $user_arr=array(
