@@ -12,26 +12,25 @@ class Controller{
     public $table_name = null ;
     public $user = null ;
     public $dao = null ;
+    public $type ;
 
 
     public function __construct($userType){
-        // get database connection
-        $database = database::getInstance();
-        $db = $database->getConnection();
-        $this->conn = $db;
 
+        $this->type = $userType ;
+        
         //initialize user 
-        if ($userType == 'client'){
+        if ($this->type == 'client'){
             $user = new Client();
         }
-        else if ($userType == 'owner'){
+        else if ($this->type == 'owner'){
             $user = new StoreOwner();
         }
-        else if ($userType == 'admin'){
+        else if ($this->type == 'admin'){
             $user = new Admin();
         }
 
-        $this->dao = new DAO();
+        $this->dao = new DAO($this->type);
     
     }
 
@@ -39,7 +38,7 @@ class Controller{
     // signup user
     function signup(){
 
-        return $this->dao->signup($this->table_name , $this->user->username , $this->user->password);
+        return $this->dao->signup($this->user->username , $this->user->password);
 
     }
 
@@ -48,7 +47,7 @@ class Controller{
     // login user
     public function login(){
 
-        return $this->dao->login($this->table_name , $this->user->username , $this->user->password);
+        return $this->dao->login($this->user->username , $this->user->password);
 
     }
 

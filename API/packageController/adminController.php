@@ -7,7 +7,7 @@ class AdminController extends Controller{
 
     public function __construct($userName , $pass){
 
-        parent::__construct('admin');
+        parent::__construct('admin') ;
         $this->user->username = $userName ;
         $this->user->password = $pass ;
         $this->table_name = 'admins' ;
@@ -23,6 +23,16 @@ class AdminController extends Controller{
     public function signup()
     {
         return parent::signup();
+    }
+
+    public function isAdmin($uID)
+    {
+        return $this->dao->isAdmin($uID);
+    }
+
+    public function list()
+    {
+        return $this->dao->getUsers();
     }
 
 
