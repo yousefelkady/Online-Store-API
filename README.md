@@ -9,9 +9,9 @@ In this project we will focus on building a reliable API for our store
 ## MVC Model 
 The code is constructed with MVC in mind 
 
-Controller classes as controllers (Controller Package)
-Service Classes as View (Service Packages)
-DAO Class as Model
+- Controller classes as controllers (Controller Package)
+- Service Classes as View (Service Packages)
+- DAO Class as Model
 
 ## API workflow
 - The User accesses one of the 3 introduced web services.
