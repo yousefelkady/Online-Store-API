@@ -1,42 +1,20 @@
 <?php
-include_once '../packageDB/DAO.php';
-include_once    'login.php';
+include_once '../packageController/adminController.php';
 
-class userList
-{
-private $authenticationToken;
-private $isLogged;
+$id = isset($_POST['id']) ? $_POST['id'] : die();
 
+$controller= new adminController("","");
 
-
-public function __construct($isLoggedIn)
-{
-    $isLogged = $isLoggedIn;
-    
+if ($controller->isAdmin($id)){
+    $listOfUsers = $controller->list();
+    print_r(json_encode($listOfUsers));
 }
-
-
-public function userIsLogged($theUserType) 
-{
-   
-    if($isLogged == true && $theUserType == 'admin')
-    {
-        $List = new DAO();
-        $listOfUsers = $List->getUsers();
-        print_r(json_encode($listOfUsers));
-    }
-    else
-    {
-        $msg_arr=array(
-            "status" => false,
-            "message" => "Sorry you are not an admin");       
-    }
-    print_r(json_encode($msg_arr));
-
-}
-
-
-
+else {
+    $user_arr=array(
+        "status" => false,
+        "message" => "You are Not Authorized !!",
+    );
+    print_r(json_encode($user_arr));
 }
 
 

@@ -33,6 +33,7 @@ else if ($userType == "admin"){
 // read the details of controllerto be edited
 $stmt = $controller->signin();
 if($stmt->rowCount() > 0){
+
     // get retrieved row
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     // create array
@@ -48,6 +49,7 @@ if($stmt->rowCount() > 0){
     $listObject = new userList();
     listObject(isLoggedIn);
 }
+
 else{
     $user_arr=array(
         "status" => false,
